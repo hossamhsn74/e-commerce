@@ -1,7 +1,32 @@
 {% extends "base.html" %}
+  {% load static %}
+
 {% block title %}products home Page{% endblock%}
 {% block content %}
- 
- hi, products home page content
+
+hi, products home page content
+<div id="products-container" class="container">
+  <!-- products -->
+  <div class="row p-5">
+    {% for product in products%}
+
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <img src="{{ product.image.url }}" class="card-img-top" >
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.descreption }}</p>
+          <h4>{{ product.price }}$</h4>
+          <hr>
+          <a href="#" class="btn btn-success"><i class="material-icons">shopping_cart</i>ADD TO CART</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+  <!-- products -->
+</div>
+
 
 {% endblock %}
