@@ -1,7 +1,65 @@
-{% extends "base.html" %}
-{% block title %}signup Page{% endblock%}
-{% block content %}
- 
- hi, signup content
+<html>
+{% load static%}
 
-{% endblock %}
+<head>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static "css/login.css" %}">
+</head>
+
+<body>
+
+    <header>
+
+    </header>
+    <section class="container">
+        <h1>Ecommerce</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div><label>first name</label><input type="text" class="first_name" name="first_name">
+                <p></p>
+            </div>
+            <div><label>last name</label><input type="text" class="last_name" name="last_name">
+                <p></p>
+            </div>
+            <div><label>email</label><input type="email" class="regist_email" name="email">
+                <p></p>
+            </div>
+            <div><label>mobile.no</label><input type="tel" class="phone" name="mobile">
+                <p></p>
+            </div>
+            <div><label>password</label><input type="password" class="regist_password" name="password">
+                <p></p>
+            </div>
+            <div class="select">
+                <label>select country</label>
+                <select name='country'>
+                    <option>Egypt</option>
+                    <option>USA</option>
+
+                </select>
+            </div>
+            <div class="select" name='state'>
+                <label>select state</label>
+                <select>
+                    <option>cairo</option>
+                    <option>menufia</option>
+
+                </select>
+            </div>
+            <div>
+                <input type="checkbox">
+                <label>I accept terms of service</label>
+            </div>
+            <!--  {{form.as_p}} -->
+
+            <div><input type="submit" disabled=True></div>
+        </form>
+    </section>
+    <footer>
+
+    </footer>
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/regist.js" %}"></script>
+
+</body>
+
+</html>
