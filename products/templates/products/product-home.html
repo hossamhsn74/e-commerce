@@ -7,18 +7,18 @@
 hi, products home page content
 <div id="products-container" class="container">
   <!-- products -->
-  <div class="row p-5">
-    {% for product in products%}
+  <div class="row m-4">
 
-    <div class="col-sm-3">
+    {% for product in products%}
+    <div class="col-sm-2">
       <div class="card text-center">
-        <img src="{{ product.image.url }}" class="card-img-top" >
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.descreption }}</p>
-          <h4>{{ product.price }}$</h4>
+        <img src="{{ product.image.url }}" class="card-img-top" width=80 height=160 ></img>
+        <div>
+          <a class="card-title" href={{product.id}}>{{product.name}}</a>
+          <p>{{ product.price }}$</p>
           <hr>
-          <a href="#" class="btn btn-success"><i class="material-icons">shopping_cart</i>ADD TO CART</a>
+          <a href="#" class="btn btn-success"><i class="material-icons">shopping_cart</i></a>
+          <a href="{{product.id}}" class="btn btn-md btn-primary">details</a>
         </div>
       </div>
     </div>
