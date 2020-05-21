@@ -1,0 +1,27 @@
+{% extends 'basepage.html' %}
+{% load static %}
+
+{% block title %}
+Charge
+{% endblock %}
+
+{% block content %}
+</header>
+<!-- </section> -->
+
+<div class="row">
+    <div class=" mx-auto my-5 py-3">
+        <form action="{% url 'home' %}" method="POST">
+            {%csrf_token%}
+
+            <button type="submit" class="btn btn-sm btn-success font-weight-bold">
+                <i class="fa-check-double"></i> Continue Shopping
+            </button>
+            <h4 class="my-2 py-2">We Will Deliver it to You in 13/2/2020 </h4>
+        </form>
+
+    </div>
+</div>
+
+<!-- products section -->
+{% endblock %}

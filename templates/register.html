@@ -1,0 +1,108 @@
+{% extends 'basepage.html' %}
+{% load static %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+ <!-- </section> -->
+
+<section  >
+         	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+<!--				<div class="login100-pic js-tilt" data-tilt>-->
+<!--					<img src="{% static  'img/img-01.png' %}" alt="IMG">-->
+<!--				</div>-->
+
+				<form class="login100-form validate-form p-2" method="post" action=".">
+					            {% csrf_token %}
+					<span class="login100-form-title">
+						Member Register
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid User name is required: xxxxxxxxx">
+<!--						<input class="input100" type="text" name="phone_number" placeholder="User Name">-->
+						{{userform.errors.username}}
+						{{userform.username}}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="material-icons">account_circle</i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid First name is required: xxxxxxxxx">
+<!--						<input class="input100" type="text" name="first_name" placeholder="First Name">-->
+						{{userform.errors.first_name}}
+						{{userform.first_name}}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="material-icons">account_circle</i>
+						</span>
+					</div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Valid Last name is required: xxxxxxxxx">
+<!--						<input class="input100" type="text" name="last_name" placeholder="Last Name">-->
+						{{userform.errors.last_name}}
+						{{userform.last_name}}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="material-icons">account_circle</i>
+						</span>
+					</div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+<!--						<input class="input100" type="text" name="email" placeholder="Email">-->
+						{{userform.errors.email}}
+						{{userform.email}}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="material-icons">contact_mail</i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+<!--						<input class="input100" type="password" name="pass" placeholder="Password">-->
+						{{userform.errors.password}}
+						{{userform.password}}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="material-icons">lock</i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+<!--						<input class="input100" type="password" name="pass" placeholder="Password">-->
+						{{userform.errors.confirm_password}}
+						{{userform.confirm_password}}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="material-icons">lock</i>
+						</span>
+					</div>
+
+                    <div class="wrap-input100 validate-input " data-validate = "Phone Number  is required">
+<!--						<input class="input100" type="text" name="pass" placeholder="Phone Number">-->
+						{{profileform.errors.phone_number}}
+						{{profileform.phone_number}}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="material-icons">phone</i>
+						</span>
+					</div>
+					{{profileform.image}}
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Register
+						</button>
+					</div>
+
+				</form>
+			</div>
+ 	</div>
+    </div>
+</section>
+<!-- products section -->
+{% endblock %}

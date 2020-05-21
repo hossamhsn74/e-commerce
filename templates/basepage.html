@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <!-- custom css -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/util.css' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+
+</head>
+
+<body>
+<!-- header -->
+<!-- <section id="header-section"> -->
+<header class="container">
+    <div class="row flex-nowrap justify-content-around align-items-center py-3">
+
+        <a class="col-sm-2 col-md-2 col-lg-2" href="{% url 'home' %}"> <img
+                src="{% static 'img/The_Fresh_Market_logo.svg' %}" width="75" height="75"></a>
+
+        <form class="col-sm-6 col-lg-6 form-inline my-2 my-lg-0 " method="get" action="{%url 'search' %}">
+            <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search"
+                   aria-label="Search">
+            <!--      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+
+        </form>
+
+
+        {% if request.user.is_authenticated %}
+
+        <!--                <a class="col-sm-12 col-md-3 col-lg-1 btn btn-md btn-outline-success my_user_name my-auto  "-->
+        <!--                   href="{% url 'account:login' %}">{{ request.user.username }}</a>-->
+
+            {% if request.user.profile.image %}
+    
+            <a class="btn col-sm-2   col-lg-1 egoreis " href="{% url 'account:profile'  request.user.username %} ">
+                <img class="thumbnail circular_image"
+                     width="40"
+                     height="40"
+                     src="{{ request.user.profile.image.url }}"></a>
+    
+            {% else %}
+    
+            <a class="btn col-sm-2  col-lg-1 egoreis " href="{% url 'account:profile'  request.user.username %}"><img
+                    class="thumbnail circular_image"
+                    width="40"
+                    height="40"
+                    src="{% static 'img/user.png' %}"></a>
+            {% endif %}
+        <a class="btn col-sm-2  col-lg-1 egoreis  my_logout  my-auto mr-0" href="{% url 'account:logout' %}">Logout</a>
+
+        {% else %}
+
+        <div class="col-sm-2 col-md-4 col-lg-3 ">
+            <a class="btn btn-md col-sm-12 col-md-3   my-auto  egoreis login_btn"
+               href="{% url 'account:login' %}">Login</a>
+            <a class="btn btn-md  col-sm-12 col-md-3   my-auto egoreis  reg_btn"
+               href="{% url 'account:register' %}">Register</a>
+        </div>
+        {% endif%}
+        <!--        <a href="{% url 'account:register' %}">-->
+        <a href="{%  url 'cart:display_cart' %}"> <div class=" col-sm-2   col-md-2 col-lg-1">
+                    <span id="reduce" class="fa-stack fa-2x has-badge mr-2 " data-count="{{ request.user.cart.cart_items.all | length }}">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                </span>
+        </div>
+            </a>
+    </div>
+
+</header>
+
+<div class="container-fluid bg-dark">
+    <div class="container  ">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                All Categories</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' 'electronics' %}">
+                            Electronics
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' 'mobiles' %}">
+                            Mobiles
+                        </a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'category' 'fashion'  %}">
+                            Fashion
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' 'home'  %}">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' 'beauty & health'  %}">
+                            Beauty & Health
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' 'baby'  %}">
+                            Baby
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' 'our market'  %}">
+                            Our Market
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' 'daily deals'  %}">
+                            Daily Deals
+                        </a>
+                    </li>
+                </ul>
+                <!--    <form class="form-inline my-2 my-lg-0">-->
+                <!--      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+                <!--      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+                <!--    </form>-->
+            </div>
+        </nav>
+    </div>
+</div>
+<div>
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+<!-- footer -->
+
+<footer>
+    <!-- contact us  -->
+    <!-- Categories -->
+    <!-- social media -->
+    <div class="row m-0 bg-dark py-5">
+
+        <div class="col-sm-12 col-md-6 col-lg-3 my-3">
+            <ul class="text-light  text-center  align-items-center justify-content-center">
+                <li class="text-capitalize font-weight-bold pb-3"><a  class="text-light" href="{% url 'category' 'electronics' %}"> Electronics </a></li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=tv"  > Led Screen </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=air condition"  > Air Contion </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=dishwasher"  > DishWasher </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=fridge"  > Fridge </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=tv" > TV </a> </li>
+            </ul>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3  my-3">
+            <ul class="text-light text-center">
+
+                <li class="text-capitalize font-weight-bold pb-3"><a  class="text-light"   href="{% url 'category' 'mobiles' %}"> Mobiles </a></li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=samsung"> Samsung </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=huawi"> Huawi </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=iphone"> Iphone </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=htc"> HTC </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=oppo"> OPPO </a> </li>
+
+            </ul>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3  my-3">
+            <ul class="text-light text-center">
+                <li class="text-capitalize font-weight-bold  pb-3"><a class="text-light"   href="{% url 'category' 'beauty & health' %}"> Beauty & Health </a></li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=tools_accessories"> Tools & Accessories </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=personalcare"> Personal Care </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=makeup"> Make-Up </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=haircare"> HairCare </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=skincare"> SkinCare </a> </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3 my-3">
+            <ul class="text-light text-center">
+                <li class="text-capitalize font-weight-bold pb-3"><a  class="text-light"   href="{% url 'category' 'fashion' %}"> Fashion </a></li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=shiftdress"> Shift Dress </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=bodycondress"> Bodycon Dress </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=alinedress"> A-Line Dress </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=wrapdress"> Wrap Dress </a> </li>
+                <li> <a class="text-light"  href="{% url 'search' %}?keyword=halterdress"> Halter Dress </a> </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="row m-0 bg-dark py-5">
+        <div class="col-md-12 ">
+            <div class="footer-social">
+                <ul class="list-unstyled row align-items-center justify-content-center">
+                    <li><a class="mx-2 wrap-row fadeInUp " href="#"><i class="fa fa-facebook-f" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a class="mx-2 wrap-row fadeInDown" href="#"><i class="fa fa-twitter"
+                                                                        aria-hidden="true"></i></a></li>
+                    <li><a class="mx-2 wrap-row fadeInUp" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a class="mx-2 wrap-row fadeInDown" href="#"><i class="fa fa-linkedin"
+                                                                        aria-hidden="true"></i></a></li>
+                    <li><a class="mx-2 wrap-row fadeInUp" href="#"><i class="fa fa-instagram"
+                                                                      aria-hidden="true"></i></a></li>
+                    <li><a class="mx-2 wrap-row fadeInDown" href="#"><i class="fa fa-envelope"
+                                                                        aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+            <p class="company-about fadeIn row text-center m-2 text-light justify-content-center"> © {% now 'Y' %} ITI.
+                Made With Love By <a class="ml-3" href="#"> ITI Team </a></p>
+        </div>
+    </div>
+
+
+</footer>
+<!-- footer -->
+
+
+<script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/main.js' %}" charset="utf-8"></script>
+</body>
+
+</html>

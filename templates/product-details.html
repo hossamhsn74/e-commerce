@@ -1,0 +1,90 @@
+{% extends 'basepage.html' %}
+{% load static %}
+{%load humanize%}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+</header>
+<!-- </section> -->
+
+<section id="main-section">
+    <!-- banner -->
+
+    <!-- banner -->
+
+
+    <!-- products section -->
+
+    <div id="products-container" class="container">
+        <!-- products -->
+        <div class="row my-4 order_details">
+            <div class="col-sm-12 col-md-6 m-auto img-magnifier-container">
+                <img id="myimage" src="{{ current_product.image.url }}" width="400" height="400">
+            </div>
+            <div class="col-sm-12 col-md-6  ">
+                <div class="row">
+
+                    <p class="p_name">{{current_product.name}}</p>
+                    <p class="p_desc">{{current_product.descreption}}</p>
+                    <p class="p_price">{{current_product.price}}$</p>
+                    <br>
+                    <a href="{% url 'cart:add'  current_product.id %}" class="btn btn-success"><i
+                            class="material-icons">shopping_cart</i>Add to cart</a>
+                </div>
+            </div>
+            <!-- products -->
+        </div>
+
+    </div>
+
+</section>
+<div class="container " id="my_anchors">
+    {% if current_product.comments.all%}
+     <h4 class="text-light bg-dark py-2 my-2">Comments</h4>
+    {%for comment in current_product.comments.all%}
+
+<div class="row">
+    <div class="col-sm-12 col-md-1">
+    {% if comment.user.profile.image %}
+        <img class="thumbnail circular_image"
+                 width="55"
+                 height="55"
+            style="border: 1px solid #454d55;display: flex;"
+                 src="{{ comment.user.profile.image.url }}">
+    {% else %}
+        <img class="thumbnail circular_image"
+                 width="55"
+                 height="55"
+            style="border: 1px solid #454d55;display: flex;"
+                 src="{% static 'img/default_user.png' %}">
+    {% endif%}
+    </div>
+    <div class="col-sm-12 col-md-8   py-2 my-2" style="display: flex; border: 1px solid #dddddd; background-color: #eeeeee;
+                border-radius: 5px; ">
+
+        <span class="col-sm-4 text-left m-2 font-weight-bold text-success">{{comment.user.username}} </span>
+        <span class="col-sm-4 text-left m-2">{{comment.text}} </span>
+        <span class="col-sm-4 text-center m-2 text-primary">{{comment.created_at|naturaltime}}</span>
+
+    </div>
+</div>
+    {%endfor%}
+
+    {% endif%}
+    <form action="{%url 'comment' current_product.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" style="border: 1px solid #454d55;display: block; border-radius: 10px" placeholder="Comment here" class="p-3 mx-2" name="text"></input><br>
+        <button class="btn btn-success m-b-2 " type="submit">comment</button>
+    </form>
+
+</div>
+</div>
+{% endblock %}
+
+{% comment %}
+{% endcomment %}
+
+<script> magnify("myimage", 3);</script>
