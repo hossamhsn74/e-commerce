@@ -71,8 +71,8 @@ Index
             </div>
             {% endfor %}
             {% else %}
-                <h4>Sorry Not Available in Our Store now , We will bring it </h4>
-                    {% endif%}
+                <h4>Sorry Not Available in Our Store now! </h4>
+            {% endif%}
 
         </div>
         <!-- products -->
@@ -80,10 +80,10 @@ Index
 
     <div  class="container">
         <!-- products -->
+        {% if mobile_data %}
         <h2 class="container-fluid text-light  bg-dark w-100 font_limit py-2">Mobiles</h2>
         <div class="row m-4">
 
-            {% if mobile_data %}
             {% for product in mobile_data%}
 
             <div class="col-sm-12 col-md-6  col-lg-3 my-2">
@@ -101,18 +101,18 @@ Index
             {% endfor %}
             {% else %}
                 <h4>Sorry Not Available in Our Store now , We will bring it </h4>
-            {% endif%}
-
-        </div>
+                
+            </div>
+        {% endif%}
         <!-- products -->
     </div>
 
     <div  class="container">
         <!-- products -->
+        {% if home_data %}
         <h2 class="container-fluid text-light  bg-dark w-100 font_limit py-2">Home</h2>
         <div class="row m-4">
 
-            {% if home_data %}
             {% for product in home_data%}
 
             <div class="col-sm-12 col-md-6  col-lg-3 my-2">
@@ -130,8 +130,8 @@ Index
             {% endfor %}
             {% else %}
                 <h4>Sorry Not Available in Our Store now , We will bring it </h4>
-            {% endif%}
-
+                
+        {% endif%}
         </div>
         <!-- products -->
     </div>

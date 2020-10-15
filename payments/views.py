@@ -4,6 +4,7 @@ from orders.models import Order
 from django.conf import settings
 from django.views.generic.base import TemplateView
 from django.shortcuts import render # new
+from account.models import profile
 
 stripe.api_key = settings.STRIPE_SECRET_KEY # new
 
@@ -24,16 +25,19 @@ def charge(request): # new
         for item in get_cart.cart_items.all():
             new_order.items.add(item)
             new_order.save()
+            user, created = profile.objects.get_or_create(user=request.user)
             request.user.profile.orders.add(new_order)
             print(item)
             request.user.profile.save()
             get_cart.cart_items.remove(item)
         get_cart.save()
+        print('get_cart = ', get_cart)
+
 
         charge = stripe.Charge.create(
             amount=get_cart.total,
             currency='usd',
             description='A Django charge',
-            source=request.POST['stripeToken']
+            source='tok_visa'
         )
         return render(request, 'charge.html')

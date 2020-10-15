@@ -34,14 +34,14 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 #SECRET_KEY = '0=6=$q8yf(f*1(-tzyvt77p95qhl3xwm9e8j3%xcyy@huv(!ov'
 
 #DEBUG = True
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
-#ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
@@ -150,8 +150,8 @@ STATICFILES_DIRS = [
 ]
 
 # STRIPE_SECRET_KEY = 'sk_test_x9PR8AXrExPNLTfj2XDu0Uwo00waf1gKTy'
-STRIPE_SECRET_KEY = 'sk_test_x9PR8AXrExPNLTfj2XDu0Uwo00waf1gKTy'
-STRIPE_PUBLISHABLE_KEY = 'pk_test_oUBwpwP3y25hbJbQhDJZYv3K00W6WF7sVs'
+STRIPE_SECRET_KEY = 'sk_test_51HcJbuFcMw87kAqH0wSjtvppqWF4ElNuIUnSBOXJqMJs7O0t3B37VZog8pRkyZ1JbGjaqkIzIQMqhy77jIsI6VD300zODhpPdY'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51HcJbuFcMw87kAqH61BnVzXfhtlP2QoAy9pPF4WwxO0k6ujThdjmZbgP4Sfaiv5B9dQboPf9Z1LSpP3vKKKajnod00npeWLbec'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
